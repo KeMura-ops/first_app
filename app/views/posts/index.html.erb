@@ -1,5 +1,5 @@
 <h1>Top Page</h1>
-<%= link_to '新規投稿', '/posts/new' %>
+<%= link_to "新規投稿", posts_new_path, class: "btn btn-outline-success" %>
 <% @posts.each do |post| %>
 <div class="post">
     <div class="post-date">
