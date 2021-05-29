@@ -1,7 +1,16 @@
 <h1>Top Page</h1>
-<%= form_with url: "/posts", method: :post,id: "form" do |form| %>
-  <%= form.text_field :content %>
-  <%= form.submit '投稿する', id: "submit", class: "btn btn-outline-primary" %>
+<% if user_signed_in? %>
+  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to 'ログイン', new_user_session_path %>
+  <%= link_to '新規登録', new_user_registration_path %>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= form_with url: "/posts", method: :post,id: "form" do |form| %>
+    <%= form.text_field :content %>
+    <%= form.submit '投稿する', id: "submit", class: "btn btn-outline-primary" %>
+  <% end %>
 <% end %>
 <% @posts.each do |post| %>
 <div class="post" data-id=<%= post.id %> data-check=<%= post.checked %>>

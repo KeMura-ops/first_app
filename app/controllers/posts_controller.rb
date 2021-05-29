@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create(content: params[:content])
+    Post.create(post_params)
     redirect_to action: :index
   end
 
@@ -19,4 +19,11 @@ class PostsController < ApplicationController
     item = Post.find(params[:id])
     render json: { post: item }
   end
+
+  private
+
+  def post_params
+    params.permit(:content).merge(user_id: current_user.id)
+  end
+
 end
