@@ -13,19 +13,7 @@
   <% end %>
 <% end %>
 <% @posts.each do |post| %>
-  <div class="post" data-id=<%= post.id %> data-check=<%= post.checked %>>
-    <div class="post-date">
-      投稿日時：<%= post.created_at %>
-    </div>
-    <div class="post-content">
-      <%= post.content %>
-    </div>
+  <div id="likes_buttons_<%= post.id %>">
+    <%= render partial: 'likes/like', locals: {post: post} %>
   </div>
-  <% if user_signed_in? %>
-    <% if current_user.liked_by?(post.id) %>
-      <td><%= link_to 'いいねを外す', destroy_like_path(post), method: :DELETE %> <%= post.likes.count %></td>
-    <% else %>
-      <td><%= link_to 'いいね', create_like_path(post), method: :POST %> <%= post.likes.count %></td>
-    <% end %>
-  <% end %>
 <% end %>
