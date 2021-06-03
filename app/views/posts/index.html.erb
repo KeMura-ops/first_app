@@ -13,6 +13,14 @@
   <% end %>
 <% end %>
 <% @posts.each do |post| %>
+  <div class="post" data-id=<%= post.id %> data-check=<%= post.checked %>>
+    <div class="post-date">
+      投稿日時：<%= post.created_at %>
+    </div>
+    <div class="post-content">
+      <%= post.content %>
+    </div>
+  </div>
   <div id="likes_buttons_<%= post.id %>">
     <%= render partial: 'likes/like', locals: {post: post} %>
   </div>
